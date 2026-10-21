@@ -1,240 +1,1179 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Love Counter</title>
-    <link rel="icon" type="image/x-icon" href="https://i.loli.net/2021/06/03/lFg2V4WUcmkB98G.png">
-    <meta name="language" content="Love_Counter">
-    <meta name="title" content="love-counter">
-    <link type="text/css" rel="stylesheet" href="./Love_files/default.css">
-    <script type="text/javascript" src="./Love_files/jquery.min.js"></script>
-    <script type="text/javascript" src="./Love_files/jscex.min.js"></script>
-    <script type="text/javascript" src="./Love_files/jscex-parser.js"></script>
-    <script type="text/javascript" src="./Love_files/jscex-jit.js"></script>
-    <script type="text/javascript" src="./Love_files/jscex-builderbase.min.js"></script>
-    <script type="text/javascript" src="./Love_files/jscex-async.min.js"></script>
-    <script type="text/javascript" src="./Love_files/jscex-async-powerpack.min.js"></script>
-    <script type="text/javascript" src="./Love_files/functions.js" charset="utf-8"></script>
-    <script type="text/javascript" src="./Love_files/love.js" charset="utf-8"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff3f7">
+  <title>Our little forever — ButterCup ♡</title>
+
+  <style>
+    :root {
+      --background: #fff8f5;
+      --pink: #e996b2;
+      --pink-light: #ffe5ef;
+      --pink-deep: #a4496c;
+      --gold: #b49158;
+      --ink: #513c45;
+      --muted: #937984;
+      --line: rgba(180, 145, 88, .23);
+      --shadow: 0 24px 80px rgba(123, 69, 87, .08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 280px;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 5% 15%, #ffe0ec 0, transparent 35%),
+        radial-gradient(circle at 95% 55%, #fff0d8 0, transparent 38%),
+        var(--background);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    input:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 5px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    ::selection {
+      background: #f4c4d7;
+      color: #633748;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
+      padding: 30px 0 40px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 8px 4px 30px;
+    }
+
+    .brand {
+      font-family: Georgia, serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--pink-deep);
+    }
+
+    .top-note {
+      color: var(--muted);
+      font-size: .72rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      align-items: center;
+      gap: 25px;
+      padding: 36px 42px;
+      border: 1px solid rgba(255, 255, 255, .9);
+      border-radius: 36px;
+      background: rgba(255, 255, 255, .57);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 330px;
+      height: 330px;
+      top: -170px;
+      left: -150px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .intro {
+      position: relative;
+      z-index: 1;
+      padding: 20px 0;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .21em;
+      font-size: .69rem;
+      font-weight: 600;
+    }
+
+    h1, h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: normal;
+      line-height: 1.12;
+    }
+
+    h1 {
+      margin: 18px 0 22px;
+      font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+      letter-spacing: -.045em;
+    }
+
+    h1 em,
+    h2 em {
+      color: var(--pink-deep);
+      font-weight: normal;
+    }
+
+    .intro-copy {
+      max-width: 350px;
+      color: var(--muted);
+      font-size: .96rem;
+    }
+
+    .primary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 18px;
+      padding: 13px 23px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: var(--pink-deep);
+      color: white;
+      box-shadow: 0 9px 22px rgba(164, 73, 108, .16);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .primary-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 26px rgba(164, 73, 108, .22);
+    }
+
+    .tiny-note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: .75rem;
+    }
+
+    /* Tree and capybara illustration */
+    .garden {
+      position: relative;
+      min-width: 0;
+      border-radius: 30px;
+      background:
+        radial-gradient(ellipse at 50% 42%, #fff1f6 0, transparent 70%);
+    }
+
+    .garden svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    .tree-trunk {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: grow-tree 2.8s ease forwards;
+    }
+
+    .tree-branch {
+      stroke-dasharray: 500;
+      stroke-dashoffset: 500;
+      animation: grow-tree 2s ease .7s forwards;
+    }
+
+    @keyframes grow-tree {
+      to { stroke-dashoffset: 0; }
+    }
+
+    .tree-bloom {
+      opacity: 0;
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: bloom-in .9s ease forwards;
+      animation-delay: var(--delay, 1s);
+    }
+
+    @keyframes bloom-in {
+      from {
+        opacity: 0;
+        transform: scale(.2);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .capy-breathe {
+      transform-box: fill-box;
+      transform-origin: center bottom;
+      animation: breathe 4s ease-in-out infinite;
+    }
+
+    .capy-breathe.second {
+      animation-delay: -2s;
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(1.018); }
+    }
+
+    .love-heart {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: heart-float 3.5s ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+    }
+
+    @keyframes heart-float {
+      0%, 100% {
+        opacity: .5;
+        transform: translateY(0) scale(.95);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(-8px) scale(1.05);
+      }
+    }
+
+    .garden-caption {
+      position: absolute;
+      bottom: 9px;
+      left: 0;
+      right: 0;
+      margin: 0;
+      text-align: center;
+      color: var(--muted);
+      font-family: Georgia, serif;
+      font-size: .85rem;
+      font-style: italic;
+    }
+
+    /* Relationship counter */
+    .counter-section {
+      position: relative;
+      margin-top: 24px;
+      padding: 30px;
+      text-align: center;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, .63);
+      box-shadow: var(--shadow);
+    }
+
+    .names {
+      margin: 9px 0 5px;
+      font-family: Georgia, serif;
+      font-size: clamp(1.6rem, 4vw, 2.25rem);
+    }
+
+    .names span {
+      display: inline-block;
+      margin: 0 10px;
+      color: var(--pink);
+      font-size: 1.4rem;
+    }
+
+    .counter-description {
+      margin: 0;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .clock {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      width: min(580px, 100%);
+      margin: 24px auto 18px;
+    }
+
+    .clock-unit {
+      padding: 17px 8px 14px;
+      border: 1px solid #f0dce4;
+      border-radius: 19px;
+      background: linear-gradient(160deg, #fffafa, #fff0f5);
+    }
+
+    .clock-number {
+      display: block;
+      color: var(--pink-deep);
+      font-family: Georgia, serif;
+      font-size: clamp(1.75rem, 4vw, 2.7rem);
+      line-height: 1.2;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .clock-label {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: .62rem;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+
+    .since {
+      color: var(--gold);
+      font-size: .77rem;
+    }
+
+    /* Love letter */
+    .letter {
+      position: relative;
+      max-width: 850px;
+      margin: 32px auto 0;
+      padding: 45px 55px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, .73);
+      box-shadow: var(--shadow);
+      scroll-margin-top: 25px;
+    }
+
+    .letter::after {
+      content: "♡";
+      position: absolute;
+      right: 30px;
+      top: 20px;
+      color: #edbfd0;
+      font-family: Georgia, serif;
+      font-size: 3rem;
+      transform: rotate(12deg);
+    }
+
+    .letter h2 {
+      margin: 14px 0 25px;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+    }
+
+    .letter-lines {
+      color: #795c68;
+      font-family: Georgia, serif;
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      line-height: 2;
+    }
+
+    .letter-lines p {
+      margin: 0 0 12px;
+    }
+
+    .love-you {
+      margin-top: 25px !important;
+      color: var(--pink-deep);
+      font-style: italic;
+    }
+
+    .signature {
+      margin-top: 25px;
+      color: var(--gold);
+      font-family: Georgia, serif;
+      font-size: 1.15rem;
+      font-style: italic;
+    }
+
+    .letter.is-highlighted {
+      animation: letter-glow 1.8s ease;
+    }
+
+    @keyframes letter-glow {
+      50% {
+        box-shadow:
+          0 0 0 5px rgba(233, 150, 178, .12),
+          var(--shadow);
+      }
+    }
+
+    /* Music control */
+    .music-player {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 11px 15px 11px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 250, 248, .96);
+      box-shadow: 0 10px 35px rgba(123, 69, 87, .12);
+      backdrop-filter: blur(12px);
+    }
+
+    .music-button {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      flex-shrink: 0;
+      border: none;
+      border-radius: 50%;
+      background: var(--pink-deep);
+      color: white;
+      font-size: 1rem;
+    }
+
+    .music-copy {
+      line-height: 1.4;
+    }
+
+    .music-title {
+      color: var(--pink-deep);
+      font-size: .77rem;
+    }
+
+    .music-status {
+      max-width: 185px;
+      color: var(--muted);
+      font-size: .64rem;
+    }
+
+    .music-volume {
+      width: 60px;
+      accent-color: var(--pink-deep);
+    }
+
+    footer {
+      padding: 35px 15px 90px;
+      text-align: center;
+      color: var(--muted);
+      font-size: .75rem;
+    }
+
+    footer span {
+      color: var(--pink-deep);
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 32px 25px 24px;
+      }
+
+      .intro {
+        text-align: center;
+        padding: 5px 0 0;
+      }
+
+      .intro-copy {
+        margin-inline: auto;
+        max-width: 420px;
+      }
+
+      h1 {
+        font-size: clamp(2.7rem, 9vw, 4.2rem);
+      }
+
+      .garden {
+        width: min(510px, 100%);
+        margin: 5px auto 0;
+      }
+
+      .letter {
+        padding: 35px 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page {
+        width: calc(100% - 24px);
+        padding-top: 16px;
+      }
+
+      .topbar {
+        padding-bottom: 20px;
+      }
+
+      .brand {
+        font-size: 1rem;
+      }
+
+      .top-note {
+        font-size: .56rem;
+        letter-spacing: .08em;
+      }
+
+      .hero {
+        border-radius: 26px;
+        padding: 27px 17px 20px;
+      }
+
+      .counter-section {
+        padding: 25px 14px;
+      }
+
+      .clock {
+        gap: 7px;
+      }
+
+      .clock-unit {
+        border-radius: 14px;
+        padding: 15px 4px;
+      }
+
+      .clock-label {
+        font-size: .54rem;
+        letter-spacing: .09em;
+      }
+
+      .letter {
+        padding: 32px 23px;
+      }
+
+      .letter::after {
+        right: 18px;
+        font-size: 2.4rem;
+      }
+
+      .music-player {
+        right: 12px;
+        bottom: 12px;
+        gap: 9px;
+      }
+
+      .music-volume {
+        width: 45px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .tree-trunk,
+      .tree-branch {
+        stroke-dashoffset: 0;
+      }
+
+      .tree-bloom {
+        opacity: 1;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div id="main">
-        <div id="error">
-            Dear, your browser does not support the content that is about to be displayed.  
-            Please switch to Google (<a href="http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html?hl=zh-CN&brand=CHMI">Chrome</a>)  
-            or Firefox (<a href="http://firefox.com.cn/download/">Firefox</a>) browser~
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">a little forever ♡</div>
+      <div class="top-note">Only you. Always you.</div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="intro">
+          <span class="eyebrow">For my favourite person</span>
+
+          <h1 id="page-title">
+            In every little life,<br>
+            I’d choose <em>you.</em>
+          </h1>
+
+          <p class="intro-copy">
+            My ButterCup, this is our little corner of the world.
+            A place for all the love, the quiet moments,
+            and the days I get to call you mine.
+          </p>
+
+          <button class="primary-button" id="open-letter">
+            A little note for you
+            <span aria-hidden="true">↗</span>
+          </button>
+
+          <p class="tiny-note">
+            Two little capybaras. One very big love.
+          </p>
         </div>
-        
-        <div id="wrap">
-            <div id="text">
-                <div id="code">
-                    <span class="say">I don’t want grand things.</span><br>
-                    <span class="say">I just want quiet mornings with you,</span><br>
-                    <span class="say">Laughter in the kitchen,</span><br>
-                    <span class="say">And soft hands held and forehead kisses.</span><br>
-                    <span class="say">If love is a language, let me speak it with my actions,</span><br>
-                    <span class="say">If love is time, then let mine be spent all with you.</span><br>
-                
-                    <span class="say">I Love you so much my ButterCup</span>
-                </div>
-                
-                
-            </div>
-            <div id="clock-box">
-                <span>Madiha </span>💘<span>Ansari</span>
-                <div id="clock"></div>
-            </div>
-            
-            <canvas id="canvas" width="1500" height="680"></canvas>
+
+        <div class="garden">
+          <svg
+            viewBox="0 0 560 540"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-labelledby="garden-title garden-description">
+
+            <title id="garden-title">Us, beneath our little love tree</title>
+            <desc id="garden-description">
+              Two cuddly capybaras lean together beneath a tree
+              covered in pink hearts. One wears a pink bow and the
+              other wears a golden bow tie. Above them it says us.
+            </desc>
+
+            <defs>
+              <linearGradient id="fur-light" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#e7c5a1"/>
+                <stop offset="100%" stop-color="#d1a47c"/>
+              </linearGradient>
+
+              <linearGradient id="fur-warm" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#d8ad85"/>
+                <stop offset="100%" stop-color="#be8c65"/>
+              </linearGradient>
+
+              <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#f1d79e"/>
+                <stop offset="100%" stop-color="#ba904e"/>
+              </linearGradient>
+
+              <path
+                id="tree-heart"
+                d="M0 10
+                   C-21 -3 -17 -22 -5 -17
+                   C-2 -16 0 -13 0 -10
+                   C4 -22 19 -21 22 -10
+                   C26 1 10 7 0 10Z"/>
+
+              <!-- Shared capybara base: round ears, broad muzzle,
+                   tiny feet, and closed happy eyes. -->
+              <g
+                id="capy-base"
+                stroke="#8c674d"
+                stroke-width="2.7"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+
+                <ellipse
+                  cx="4" cy="112" rx="48" ry="8"
+                  fill="#a87968" stroke="none" opacity=".1"/>
+
+                <!-- Feet -->
+                <ellipse cx="-22" cy="105" rx="15" ry="9" fill="currentColor"/>
+                <ellipse cx="28" cy="105" rx="15" ry="9" fill="currentColor"/>
+
+                <!-- Seated body -->
+                <path
+                  d="M-32 20
+                     Q-53 44 -46 81
+                     Q-40 108 2 110
+                     Q44 111 49 83
+                     Q55 47 31 24Z"
+                  fill="currentColor"/>
+
+                <ellipse
+                  cx="4" cy="75" rx="28" ry="27"
+                  fill="#efdabd" stroke="none" opacity=".85"/>
+
+                <!-- Ears -->
+                <ellipse cx="-30" cy="-28" rx="12" ry="15" fill="currentColor"/>
+                <ellipse cx="20" cy="-30" rx="11" ry="14" fill="currentColor"/>
+                <ellipse cx="-30" cy="-28" rx="5" ry="8" fill="#eab8b6" stroke="none"/>
+                <ellipse cx="20" cy="-30" rx="5" ry="7" fill="#eab8b6" stroke="none"/>
+
+                <!-- Head -->
+                <path
+                  d="M-35 -24
+                     Q-17 -39 12 -32
+                     Q33 -27 38 -10
+                     L52 -3
+                     Q66 4 64 20
+                     Q62 38 42 43
+                     Q15 48 -10 39
+                     L-30 31
+                     Q-48 19 -47 0
+                     Q-47 -15 -35 -24Z"
+                  fill="currentColor"/>
+
+                <!-- Cream muzzle -->
+                <path
+                  d="M33 -1
+                     Q49 -3 57 9
+                     Q64 22 50 32
+                     Q36 40 23 31
+                     Q14 23 20 11
+                     Q25 3 33 -1Z"
+                  fill="#efd3af" stroke="none"/>
+
+                <!-- Closed smiling eye -->
+                <path
+                  d="M-13 2 Q-7 -5 -1 2"
+                  fill="none" stroke="#634936" stroke-width="3"/>
+
+                <!-- Cheek -->
+                <ellipse
+                  cx="-10" cy="17" rx="10" ry="6"
+                  fill="#eaa8b7" stroke="none" opacity=".8"/>
+
+                <circle cx="-13" cy="15" r="1.5" fill="#ffe5eb" stroke="none"/>
+
+                <!-- Nose and smile -->
+                <ellipse
+                  cx="55" cy="12" rx="3" ry="2"
+                  fill="#805c44" stroke="none"/>
+
+                <path
+                  d="M36 25 Q44 31 52 24"
+                  fill="none" stroke-width="2"/>
+
+                <!-- Front paw -->
+                <path
+                  d="M-29 57 Q-18 63 -11 79"
+                  fill="none" stroke-width="12"/>
+
+                <path
+                  d="M-29 57 Q-18 63 -11 79"
+                  fill="none" stroke="currentColor" stroke-width="8"/>
+              </g>
+            </defs>
+
+            <!-- Soft garden background -->
+            <circle cx="283" cy="245" r="202" fill="#fff0f5" opacity=".55"/>
+            <circle cx="283" cy="245" r="176" fill="none" stroke="#ead8bc" stroke-width="1" opacity=".65"/>
+
+            <!-- Ground -->
+            <ellipse cx="285" cy="468" rx="205" ry="18" fill="#eadfcd" opacity=".38"/>
+            <path
+              d="M87 468 Q278 458 476 468"
+              fill="none" stroke="#c7b393" stroke-width="1.5"/>
+
+            <!-- Tree trunk and branches -->
+            <g fill="none" stroke-linecap="round">
+              <path
+                class="tree-trunk"
+                d="M278 465 Q267 386 282 316 Q292 254 275 173"
+                stroke="#a47d60" stroke-width="19"/>
+
+              <path
+                class="tree-branch"
+                d="M279 355 Q237 294 170 259"
+                stroke="#ad8567" stroke-width="11"/>
+
+              <path
+                class="tree-branch"
+                d="M281 319 Q330 268 393 239"
+                stroke="#ad8567" stroke-width="10"/>
+
+              <path
+                class="tree-branch"
+                d="M279 272 Q236 214 211 166"
+                stroke="#ad8567" stroke-width="8"/>
+
+              <path
+                class="tree-branch"
+                d="M280 264 Q325 214 337 161"
+                stroke="#ad8567" stroke-width="8"/>
+
+              <path
+                class="tree-branch"
+                d="M228 301 Q215 263 190 238"
+                stroke="#b68e70" stroke-width="5"/>
+
+              <path
+                class="tree-branch"
+                d="M333 278 Q371 279 406 264"
+                stroke="#b68e70" stroke-width="5"/>
+            </g>
+
+            <!-- Heart leaves are created here -->
+            <g id="tree-blooms" aria-hidden="true"></g>
+
+            <!-- Little golden sparkles -->
+            <g fill="#c4a368" opacity=".8">
+              <path d="M97 333 L100 324 L103 333 L112 336 L103 339 L100 348 L97 339 L88 336Z"/>
+              <path d="M442 333 L445 324 L448 333 L457 336 L448 339 L445 348 L442 339 L433 336Z"/>
+            </g>
+
+            <!-- Loving capybara pair -->
+            <g transform="translate(225 357) rotate(-7)">
+              <g class="capy-breathe">
+                <use href="#capy-base" style="color:#dfb58e"/>
+
+                <!-- Female capybara bow -->
+                <g stroke="#bb7695" stroke-width="2" stroke-linejoin="round">
+                  <path
+                    d="M-27 -31 Q-48 -47 -49 -33 Q-48 -20 -28 -25Z"
+                    fill="#f9bdd5"/>
+                  <path
+                    d="M-21 -31 Q-2 -48 1 -34 Q2 -20 -19 -25Z"
+                    fill="#f9bdd5"/>
+                  <circle cx="-24" cy="-28" r="5.5" fill="#e79bb9"/>
+                </g>
+
+                <!-- Little eyelashes -->
+                <path
+                  d="M-13 1 L-17 -3 M-9 -2 L-10 -6"
+                  fill="none" stroke="#634936"
+                  stroke-width="1.7" stroke-linecap="round"/>
+              </g>
+            </g>
+
+            <!-- Mirrored capybara leans toward her -->
+            <g transform="translate(344 358) rotate(7)">
+              <g class="capy-breathe second">
+                <g transform="scale(-1 1)">
+                  <use href="#capy-base" style="color:#cfa079"/>
+
+                  <!-- Golden bow tie -->
+                  <g stroke="#aa8349" stroke-width="1.6" stroke-linejoin="round">
+                    <path d="M-3 48 L-19 40 Q-23 49 -19 58 L-3 52Z" fill="url(#gold)"/>
+                    <path d="M3 48 L19 40 Q23 49 19 58 L3 52Z" fill="url(#gold)"/>
+                    <rect x="-4" y="46" width="8" height="9" rx="2" fill="#d3ad6a"/>
+                  </g>
+                </g>
+              </g>
+            </g>
+
+            <!-- Us label -->
+            <g>
+              <rect
+                x="252" y="295" width="65" height="32" rx="16"
+                fill="#fffaf7" stroke="#e9cdd8"/>
+
+              <text
+                x="284.5" y="317"
+                text-anchor="middle"
+                font-family="Georgia, serif"
+                font-size="19"
+                font-style="italic"
+                fill="#a4496c">
+                us ♡
+              </text>
+            </g>
+
+            <!-- Hearts above the couple -->
+            <g class="love-heart" fill="#de90ad">
+              <use href="#tree-heart" transform="translate(233 312) scale(.35)"/>
+            </g>
+
+            <g class="love-heart" style="--delay:-1.5s" fill="#d4ad6b">
+              <use href="#tree-heart" transform="translate(333 306) scale(.28)"/>
+            </g>
+
+            <!-- Small flowers -->
+            <g fill="#e6aac0">
+              <circle cx="120" cy="459" r="5"/>
+              <circle cx="127" cy="454" r="5"/>
+              <circle cx="134" cy="460" r="5"/>
+              <circle cx="127" cy="466" r="5"/>
+
+              <circle cx="426" cy="460" r="4"/>
+              <circle cx="432" cy="455" r="4"/>
+              <circle cx="438" cy="461" r="4"/>
+              <circle cx="432" cy="466" r="4"/>
+            </g>
+
+            <g fill="#d4b16e">
+              <circle cx="127" cy="460" r="3"/>
+              <circle cx="432" cy="461" r="2.5"/>
+            </g>
+          </svg>
+
+          <p class="garden-caption">
+            Somewhere quiet. Together. That’s enough.
+          </p>
         </div>
-        <div id="music-btn">
-            <img src="./cd.png" alt="cd" class="cd">
-            <audio preload="auto" id="media" src="kissme.mp3" loop="loop"></audio>
+      </section>
+
+      <section class="counter-section" aria-labelledby="counter-title">
+        <span class="eyebrow">Every moment, a little more in love</span>
+
+        <h2 class="names" id="counter-title">
+          Madiha <span aria-label="loves">♡</span> Ansari
+        </h2>
+
+        <p class="counter-description" id="counter-description">
+          Our little forever has been growing for
+        </p>
+
+        <div class="clock" role="group" aria-label="Time together">
+          <div class="clock-unit">
+            <span class="clock-number" id="days">0</span>
+            <span class="clock-label">Days</span>
+          </div>
+
+          <div class="clock-unit">
+            <span class="clock-number" id="hours">00</span>
+            <span class="clock-label">Hours</span>
+          </div>
+
+          <div class="clock-unit">
+            <span class="clock-number" id="minutes">00</span>
+            <span class="clock-label">Minutes</span>
+          </div>
+
+          <div class="clock-unit">
+            <span class="clock-number" id="seconds">00</span>
+            <span class="clock-label">Seconds</span>
+          </div>
         </div>
+
+        <div class="since">
+          Since 22 November 2025 · and still choosing you
+        </div>
+      </section>
+
+      <section class="letter" id="love-letter" aria-labelledby="letter-title">
+        <span class="eyebrow">A note from my heart</span>
+
+        <h2 id="letter-title">
+          My sweetest <em>ButterCup,</em>
+        </h2>
+
+        <div class="letter-lines">
+          <p>
+            I don’t want grand things.<br>
+            I just want quiet mornings with you,
+          </p>
+
+          <p>
+            Laughter in the kitchen,<br>
+            And soft hands held and forehead kisses.
+          </p>
+
+          <p>
+            If love is a language, let me speak it with my actions,<br>
+            If love is time, then let mine be spent all with you.
+          </p>
+
+          <p class="love-you">
+            I Love you so much my ButterCup
+          </p>
+        </div>
+
+        <div class="signature">
+          With love, Your Janeman ♡
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Made for you, with a full heart.<br>
+      <span>You + me + all the little things. ♡</span>
+    </footer>
+  </div>
+
+  <audio id="media" src="kissme.mp3" preload="none" loop></audio>
+
+  <aside class="music-player" aria-label="Background music controls">
+    <button
+      class="music-button"
+      id="music-button"
+      type="button"
+      aria-label="Play background music"
+      aria-pressed="false">
+      <span id="music-icon" aria-hidden="true">▶</span>
+    </button>
+
+    <div class="music-copy">
+      <div class="music-title">Our little soundtrack</div>
+      <div class="music-status" id="music-status" role="status">
+        Tap to play ♡
+      </div>
     </div>
 
-    <script>
-        
-        var audio = document.getElementById('media');
-        var musicBtn = document.getElementById('music-btn');
-        var cd = document.getElementsByClassName('cd')[0];
+    <input
+      class="music-volume"
+      id="music-volume"
+      type="range"
+      min="0"
+      max="100"
+      value="35"
+      aria-label="Music volume">
+  </aside>
 
-        musicBtn.addEventListener('click', function() {
-            if (audio.paused) {
-                audio.play();
-                cd.classList.add("spin");
-            } else {
-                audio.pause();
-                cd.classList.remove("spin");
-            }
+  <script>
+    (() => {
+      // Relationship start date, with an explicit India timezone.
+      const togetherSince = new Date("2025-11-22T00:00:00+05:30");
+
+      const days = document.getElementById("days");
+      const hours = document.getElementById("hours");
+      const minutes = document.getElementById("minutes");
+      const seconds = document.getElementById("seconds");
+      const description = document.getElementById("counter-description");
+
+      function updateCounter() {
+        const difference = Date.now() - togetherSince.getTime();
+        const totalSeconds = Math.floor(Math.abs(difference) / 1000);
+
+        days.textContent = Math.floor(totalSeconds / 86400).toLocaleString();
+        hours.textContent =
+          String(Math.floor(totalSeconds / 3600) % 24).padStart(2, "0");
+        minutes.textContent =
+          String(Math.floor(totalSeconds / 60) % 60).padStart(2, "0");
+        seconds.textContent = String(totalSeconds % 60).padStart(2, "0");
+
+        description.textContent = difference >= 0
+          ? "Our little forever has been growing for"
+          : "Our little forever begins in";
+      }
+
+      updateCounter();
+      setInterval(updateCounter, 1000);
+
+      // Heart-covered tree.
+      const svgNamespace = "http://www.w3.org/2000/svg";
+      const blooms = document.getElementById("tree-blooms");
+      const colors = [
+        "#e997b4",
+        "#efabc4",
+        "#f5bdd1",
+        "#df83a4",
+        "#f8cedd",
+        "#e6a6b7"
+      ];
+
+      let seed = 26;
+
+      function random() {
+        seed = (seed * 16807) % 2147483647;
+        return (seed - 1) / 2147483646;
+      }
+
+      // Fill a heart-shaped canopy with small heart blossoms.
+      for (let index = 0; index < 240; index++) {
+        let x;
+        let y;
+
+        do {
+          x = random() * 2.5 - 1.25;
+          y = random() * 2.4 - 1.15;
+        } while (
+          Math.pow(x * x + y * y - 1, 3) - x * x * y * y * y > 0
+        );
+
+        const positionX = 280 + x * 145;
+        const positionY = 192 - y * 103;
+        const scale = .24 + random() * .23;
+        const rotation = random() * 60 - 30;
+
+        const positionGroup = document.createElementNS(svgNamespace, "g");
+        positionGroup.setAttribute(
+          "transform",
+          `translate(${positionX} ${positionY}) rotate(${rotation}) scale(${scale})`
+        );
+
+        const heart = document.createElementNS(svgNamespace, "use");
+        heart.setAttribute("href", "#tree-heart");
+        heart.setAttribute("fill", colors[index % colors.length]);
+        heart.setAttribute("class", "tree-bloom");
+        heart.style.setProperty("--delay", `${.7 + random() * 2.3}s`);
+
+        positionGroup.appendChild(heart);
+        blooms.appendChild(positionGroup);
+      }
+
+      // Letter and music controls.
+      const audio = document.getElementById("media");
+      const musicButton = document.getElementById("music-button");
+      const musicIcon = document.getElementById("music-icon");
+      const musicStatus = document.getElementById("music-status");
+      const volume = document.getElementById("music-volume");
+      const letterButton = document.getElementById("open-letter");
+      const letter = document.getElementById("love-letter");
+
+      let hasTriedMusic = false;
+
+      audio.volume = .35;
+
+      function updateMusicButton() {
+        const playing = !audio.paused && !audio.ended;
+
+        musicIcon.textContent = playing ? "❚❚" : "▶";
+        musicButton.setAttribute("aria-pressed", String(playing));
+        musicButton.setAttribute(
+          "aria-label",
+          playing ? "Pause background music" : "Play background music"
+        );
+      }
+
+      async function playMusic() {
+        hasTriedMusic = true;
+        musicStatus.textContent = "Starting our song…";
+
+        try {
+          await audio.play();
+        } catch {
+          musicStatus.textContent = audio.error
+            ? "Check that kissme.mp3 is available"
+            : "Tap play to start our song";
+        }
+
+        updateMusicButton();
+      }
+
+      musicButton.addEventListener("click", () => {
+        if (audio.paused) {
+          playMusic();
+        } else {
+          audio.pause();
+        }
+      });
+
+      audio.addEventListener("playing", () => {
+        musicStatus.textContent = "A little music for us ♡";
+        updateMusicButton();
+      });
+
+      audio.addEventListener("pause", () => {
+        musicStatus.textContent = "Paused, whenever you’re ready";
+        updateMusicButton();
+      });
+
+      audio.addEventListener("waiting", () => {
+        musicStatus.textContent = "Loading our song…";
+      });
+
+      audio.addEventListener("error", () => {
+        musicStatus.textContent = "Check that kissme.mp3 is available";
+        updateMusicButton();
+      });
+
+      volume.addEventListener("input", () => {
+        audio.volume = Number(volume.value) / 100;
+      });
+
+      letterButton.addEventListener("click", () => {
+        letter.scrollIntoView({
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+            ? "auto"
+            : "smooth",
+          block: "start"
         });
 
-        (function () {
-            
-            var canvas = $('#canvas');
+        letter.classList.remove("is-highlighted");
+        void letter.offsetWidth;
+        letter.classList.add("is-highlighted");
 
-            if (!canvas[0].getContext) {
-                $("#error").show();
-                return false;
-            }
-
-            var width = canvas.width();
-            var height = canvas.height();
-
-            canvas.attr("width", width);
-            canvas.attr("height", height);
-
-            var opts = {
-                seed: {
-                    x: width / 2 - 20,
-                    color: "rgb(255, 255, 255)",
-                    scale: 3
-                },
-                branch: [
-                    [535, 680, 570, 250, 500, 200, 30, 100, [
-                        [540, 500, 455, 417, 340, 400, 13, 100, [
-                            [450, 435, 434, 430, 394, 395, 2, 40]
-                        ]],
-                        [550, 445, 600, 356, 680, 345, 12, 100, [
-                            [578, 400, 648, 409, 661, 426, 3, 80]
-                        ]],
-                        [539, 281, 537, 248, 534, 217, 3, 40],
-                        [546, 397, 413, 247, 328, 244, 9, 80, [
-                            [427, 286, 383, 253, 371, 205, 2, 40],
-                            [498, 345, 435, 315, 395, 330, 4, 60]
-                        ]],
-                        [546, 357, 608, 252, 678, 221, 6, 100, [
-                            [590, 293, 646, 277, 648, 271, 2, 80]
-                        ]]
-                    ]]
-                ],
-                bloom: {
-                    num: 800,
-                    width: 1080,
-                    height: 650,
-                },
-                footer: {
-                    width: 1200,
-                    height: 5,
-                    speed: 10,
-                }
-            }
-
-            var tree = new Tree(canvas[0], width, height, opts);
-            var seed = tree.seed;
-            var foot = tree.footer;
-            var hold = 1;
-
-            canvas.click(function (e) {
-                audio.play();
-                cd.classList.add("spin");
-
-                var offset = canvas.offset(), x, y;
-                x = e.pageX - offset.left;
-                y = e.pageY - offset.top;
-                if (seed.hover(x, y)) {
-                    hold = 0;
-                    canvas.unbind("click");
-                    canvas.unbind("mousemove");
-                    canvas.removeClass('hand');
-                }
-            }).mousemove(function (e) {
-                var offset = canvas.offset(), x, y;
-                x = e.pageX - offset.left;
-                y = e.pageY - offset.top;
-                canvas.toggleClass('hand', seed.hover(x, y));
-            });
-
-            var seedAnimate = eval(Jscex.compile("async", function () {
-                seed.draw();
-                while (hold) {
-                    $await(Jscex.Async.sleep(10));
-                }
-                while (seed.canScale()) {
-                    seed.scale(0.95);
-                    $await(Jscex.Async.sleep(10));
-                }
-                while (seed.canMove()) {
-                    seed.move(0, 2);
-                    foot.draw();
-                    $await(Jscex.Async.sleep(10));
-                }
-            }));
-
-            var growAnimate = eval(Jscex.compile("async", function () {
-                do {
-                    tree.grow();
-                    $await(Jscex.Async.sleep(10));
-                } while (tree.canGrow());
-            }));
-
-            var flowAnimate = eval(Jscex.compile("async", function () {
-                do {
-                    tree.flower(2);
-                    $await(Jscex.Async.sleep(10));
-                } while (tree.canFlower());
-            }));
-
-            var moveAnimate = eval(Jscex.compile("async", function () {
-                tree.snapshot("p1", 240, 0, 610, 680);
-                while (tree.move("p1", 500, 0)) {
-                    foot.draw();
-                    $await(Jscex.Async.sleep(10));
-                }
-                foot.draw();
-                tree.snapshot("p2", 500, 0, 610, 680);
-
-                // 会有闪烁不得意这样做, (＞﹏＜)
-                canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
-                canvas.css("background", "#b76e79");
-                $await(Jscex.Async.sleep(300));
-                canvas.css("background", "none");
-            }));
-
-            var jumpAnimate = eval(Jscex.compile("async", function () {
-                var ctx = tree.ctx;
-                while (true) {
-                    tree.ctx.clearRect(0, 0, width, height);
-                    tree.jump();
-                    foot.draw();
-                    $await(Jscex.Async.sleep(25));
-                }
-            }));
-
-            var textAnimate = eval(Jscex.compile("async", function () {
-                var together = new Date();
-                together.setFullYear(2025, 11, 22);
-                together.setHours(0);
-                together.setMinutes(0);
-                together.setSeconds(0);
-                together.setMilliseconds(0);
-
-                $("#code").show().typewriter();
-                $("#clock-box").fadeIn(500);
-                while (true) {
-                    timeElapse(together);
-                    $await(Jscex.Async.sleep(1000));
-                }
-            }));
-
-            var runAsync = eval(Jscex.compile("async", function () {
-                $await(seedAnimate());
-                $await(growAnimate());
-                $await(flowAnimate());
-                $await(moveAnimate());
-
-                textAnimate().start();
-
-                $await(jumpAnimate());
-            }));
-
-            runAsync().start();
-        })();
-    </script>
-
-
-
+        if (!hasTriedMusic) {
+          playMusic();
+        }
+      });
+    })();
+  </script>
 </body>
-
 </html>
